@@ -9,13 +9,20 @@ background_color = (128, 229, 175)
 window_size = (900, 500)
 game_font = pygame.font.Font("Freedom-10eM.ttf", 100)
 
+
+def game(discs=4):
+    pass
+
 def mainMenu():
     pygame.display.set_caption("Hanoi Tower / Menu")
     screen = pygame.display.set_mode(window_size)
     bg = pygame.image.load("background.png")
     screen.blit(bg, (0, 0))
     menu_text = game_font.render("Main Menu", True, (255, 255, 255))
-    screen.blit(menu_text,(window_size[0] // 2 - menu_text.get_width() // 2, 80))
+    shadow_menu_text = game_font.render("Main Menu", True, (0, 0, 0))
+    screen.blit(shadow_menu_text, (window_size[0] // 2 - menu_text.get_width() // 2 - 7, 60))
+    screen.blit(menu_text,(window_size[0] // 2 - menu_text.get_width() // 2, 60))
+
     pygame.display.flip()
 
 
