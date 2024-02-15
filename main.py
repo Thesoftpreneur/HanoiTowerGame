@@ -2,6 +2,7 @@ import sys
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from button import Button
+from disc import Disc
 import pygame
 
 pygame.init()
@@ -13,32 +14,25 @@ button_font = pygame.font.Font("Freedom-10eM.ttf", 30)
 level_font = pygame.font.Font("Freedom-10eM.ttf", 50)
 
 
+
+
+
+
+
 def game(discs, level):
     pygame.display.set_caption("Hanoi Tower / Game")
     pygame.display.flip()
+    list_of_discs = [(180, 25), (160, 25), (140, 25), (120, 25), (100, 25), (80, 25), (60, 25)]
+    list_of_colors = [(255, 0, 0),  (255, 165, 0), (255, 255, 0), (0, 255, 0), (0, 0, 255), (75, 0, 130), (148, 0, 211)]
+    listOnFirst = []
 
     while True:
 
         bg = pygame.image.load("background.png")
         screen.blit(bg, (0, 0))
-        if level == "easy":
-            level_text = level_font.render("Level: Easy", True, (255, 255, 255))
-            shadow_level_text = level_font.render("Level: Easy", True, (0, 0, 0))
-            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
-            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
 
-        elif level == "medium":
-            level_text = level_font.render("Level: Medium", True, (255, 255, 255))
-            shadow_level_text = level_font.render("Level: Medium", True, (0, 0, 0))
-            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
-            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
-
-        else:
-            level_text = level_font.render("Level: Hard", True, (255, 255, 255))
-            shadow_level_text = level_font.render("Level: Hard", True, (0, 0, 0))
-            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
-            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
-
+        def is_clicked(self, event):
+            return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
         pygame.draw.rect(screen, (88, 66, 29), (100, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (350, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (600, 400, 200, 25))
@@ -46,10 +40,45 @@ def game(discs, level):
         pygame.draw.rect(screen, (88, 66, 29), (440, 200, 20, 200))
         pygame.draw.rect(screen, (88, 66, 29), (690, 200, 20, 200))
 
+        if level == "easy":
+            level_text = level_font.render("Level: Easy", True, (255, 255, 255))
+            shadow_level_text = level_font.render("Level: Easy", True, (0, 0, 0))
+            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
+            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
+            for i in range(discs):
+                disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
+                disc.drawOnFirst(screen, listOnFirst)
+
+
+
+
+        elif level == "medium":
+            level_text = level_font.render("Level: Medium", True, (255, 255, 255))
+            shadow_level_text = level_font.render("Level: Medium", True, (0, 0, 0))
+            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
+            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
+            for i in range(discs):
+                disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
+                disc.drawOnFirst(screen, listOnFirst)
+
+
+
+        else:
+            level_text = level_font.render("Level: Hard", True, (255, 255, 255))
+            shadow_level_text = level_font.render("Level: Hard", True, (0, 0, 0))
+            screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
+            screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
+            for i in range(discs):
+                disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
+                disc.drawOnFirst(screen, listOnFirst)
+
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
+        listOnFirst.clear()
         pygame.display.flip()
 
 
