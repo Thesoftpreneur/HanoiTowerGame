@@ -12,6 +12,7 @@ screen = pygame.display.set_mode(window_size)
 game_font = pygame.font.Font("Freedom-10eM.ttf", 100)
 button_font = pygame.font.Font("Freedom-10eM.ttf", 30)
 level_font = pygame.font.Font("Freedom-10eM.ttf", 50)
+columnt_font = pygame.font.Font("Freedom-10eM.ttf", 20)
 
 
 
@@ -44,11 +45,23 @@ def game(discs, level):
     column3 = Column(700)
     isStartingPoint = True
     reserved = []
+    button1 = Button(100, 440, 200, 50, "Column", columnt_font)
+    button2 = Button(350, 440, 200, 50, "Column", columnt_font)
+    button3 = Button(600, 440, 200, 50, "Column", columnt_font)
     while True:
 
+        mousepos = pygame.mouse.get_pos()
         bg = pygame.image.load("background.png")
         screen.blit(bg, (0, 0))
         drawColumns()
+        button1.draw(screen)
+        button2.draw(screen)
+        button3.draw(screen)
+        button1.check_collision(mousepos)
+        button2.check_collision(mousepos)
+        button3.check_collision(mousepos)
+
+
 
         def is_clicked(self, event):
             return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
@@ -105,6 +118,29 @@ def game(discs, level):
                     if column3.discs[-1].is_clicked(event) and reserved == []:
                         column3.discs[-1].getAbove(screen)
                         reserved.append(column3.rem())
+                if reserved != []:
+                    if button1.is_clicked(event):
+                        if column1.discs == []:
+                            column1.add(reserved[0])
+                            reserved.clear()
+                        elif column1.discs[-1].width > reserved[0].width:
+                            column1.add(reserved[0])
+                            reserved.clear()
+                    elif button2.is_clicked(event):
+                        if column2.discs == []:
+                            column2.add(reserved[0])
+                            reserved.clear()
+                        elif column2.discs[-1].width > reserved[0].width:
+                            column2.add(reserved[0])
+                            reserved.clear()
+                    elif button3.is_clicked(event):
+                        if column3.discs == []:
+                            column3.add(reserved[0])
+                            reserved.clear()
+                        elif column3.discs[-1].width > reserved[0].width:
+                            column3.add(reserved[0])
+                            reserved.clear()
+
 
             column1.drawDiscs(screen)
             column2.drawDiscs(screen)
