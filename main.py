@@ -8,6 +8,8 @@ from pygame import mixer
 
 pygame.init()
 mixer.init()
+mixer.music.load("muzyka.mp3")
+mixer.music.play(-1)
 background_color = (128, 229, 175)
 window_size = (900, 500)
 screen = pygame.display.set_mode(window_size)
