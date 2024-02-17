@@ -2,7 +2,7 @@ import sys
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 from button import Button
-from disc import Disc
+from disc import Disc, Column
 import pygame
 
 pygame.init()
@@ -26,13 +26,7 @@ def game(discs, level):
     list_of_colors = [(255, 0, 0),  (255, 165, 0), (255, 255, 0), (0, 255, 0), (0, 0, 255), (75, 0, 130), (148, 0, 211)]
     listOnFirst = []
 
-    while True:
-
-        bg = pygame.image.load("background.png")
-        screen.blit(bg, (0, 0))
-
-        def is_clicked(self, event):
-            return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
+    def drawColumns():
         pygame.draw.rect(screen, (88, 66, 29), (100, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (350, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (600, 400, 200, 25))
@@ -40,37 +34,86 @@ def game(discs, level):
         pygame.draw.rect(screen, (88, 66, 29), (440, 200, 20, 200))
         pygame.draw.rect(screen, (88, 66, 29), (690, 200, 20, 200))
 
-        if level == "easy":
+        level_text = level_font.render(f"Level: {level.capitalize()}", True, (255, 255, 255))
+        shadow_level_text = level_font.render(f"Level: {level.capitalize()}", True, (0, 0, 0))
+        screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
+        screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
+
+    column1 = Column(200)
+    column2 = Column(450)
+    column3 = Column(700)
+    isStartingPoint = True
+    reserved = []
+    while True:
+
+        bg = pygame.image.load("background.png")
+        screen.blit(bg, (0, 0))
+        drawColumns()
+
+        def is_clicked(self, event):
+            return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
+
+        if level == "easy" and isStartingPoint:
             level_text = level_font.render("Level: Easy", True, (255, 255, 255))
             shadow_level_text = level_font.render("Level: Easy", True, (0, 0, 0))
             screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
             screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
             for i in range(discs):
                 disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
-                disc.drawOnFirst(screen, listOnFirst)
+                column1.add(disc)
+            column1.drawDiscs(screen)
+            isStartingPoint = False
 
 
-
-
-        elif level == "medium":
+        elif level == "medium" and isStartingPoint:
             level_text = level_font.render("Level: Medium", True, (255, 255, 255))
             shadow_level_text = level_font.render("Level: Medium", True, (0, 0, 0))
             screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
             screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
             for i in range(discs):
                 disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
-                disc.drawOnFirst(screen, listOnFirst)
+                column1.add(disc)
+            column1.drawDiscs(screen)
+            isStartingPoint = False
 
 
 
-        else:
+        elif level=="hard" and isStartingPoint:
             level_text = level_font.render("Level: Hard", True, (255, 255, 255))
             shadow_level_text = level_font.render("Level: Hard", True, (0, 0, 0))
             screen.blit(shadow_level_text, (window_size[0] // 2 - level_text.get_width() // 2 - 7, 60))
             screen.blit(level_text, (window_size[0] // 2 - level_text.get_width() // 2, 60))
             for i in range(discs):
                 disc = Disc(list_of_discs[i][0], list_of_discs[i][1], list_of_colors[i])
-                disc.drawOnFirst(screen, listOnFirst)
+                column1.add(disc)
+            column1.drawDiscs(screen)
+            isStartingPoint = False
+
+        else:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+                if column1.discs != []:
+                    if column1.discs[-1].is_clicked(event) and reserved == []:
+                        column1.discs[-1].getAbove(screen)
+                        reserved.append(column1.rem())
+                if column2.discs != []:
+                    if column2.discs[-1].is_clicked(event) and reserved == []:
+                        column2.discs[-1].getAbove(screen)
+                        reserved.append(column2.rem())
+                if column3.discs != []:
+                    if column3.discs[-1].is_clicked(event) and reserved == []:
+                        column3.discs[-1].getAbove(screen)
+                        reserved.append(column3.rem())
+
+            column1.drawDiscs(screen)
+            column2.drawDiscs(screen)
+            column3.drawDiscs(screen)
+            if reserved != []:
+                reserved[0].getAbove(screen)
+
+
+
 
 
 
@@ -78,7 +121,6 @@ def game(discs, level):
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        listOnFirst.clear()
         pygame.display.flip()
 
 
