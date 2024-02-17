@@ -35,8 +35,8 @@ def theEnd(discs, moves):
         screen.blit(shadow_menu_text, (window_size[0] // 2 - menu_text.get_width() // 2 - 7, 150))
         screen.blit(menu_text, (window_size[0] // 2 - menu_text.get_width() // 2, 150))
         if discs == 4:
-            discs_text = score_font.render(f"You make it in: {moves} moves", True, (255, 255, 255))
-            shadow_discs_text = score_font.render(f"You make it in: {moves} moves", True, (0, 0, 0))
+            discs_text = score_font.render(f"You made it in: {moves} moves", True, (255, 255, 255))
+            shadow_discs_text = score_font.render(f"You made it in: {moves} moves", True, (0, 0, 0))
             screen.blit(shadow_discs_text, (window_size[0] // 2 - discs_text.get_width() // 2 - 3, 250))
             screen.blit(discs_text, (window_size[0] // 2 - discs_text.get_width() // 2, 250))
             discs_text_record = score_font.render("Least possible moves is: 15", True, (255, 255, 255))
@@ -45,8 +45,8 @@ def theEnd(discs, moves):
             screen.blit(discs_text_record, (window_size[0] // 2 - discs_text_record.get_width() // 2, 300))
 
         if discs == 6:
-            discs_text = score_font.render(f"You make it in: {moves} moves", True, (255, 255, 255))
-            shadow_discs_text = score_font.render(f"You make it in: {moves} moves", True, (0, 0, 0))
+            discs_text = score_font.render(f"You made it in: {moves} moves", True, (255, 255, 255))
+            shadow_discs_text = score_font.render(f"You made it in: {moves} moves", True, (0, 0, 0))
             screen.blit(shadow_discs_text, (window_size[0] // 2 - discs_text.get_width() // 2 - 3, 250))
             screen.blit(discs_text, (window_size[0] // 2 - discs_text.get_width() // 2, 250))
             discs_text_record = score_font.render("Least possible moves is: 63", True, (255, 255, 255))
@@ -55,8 +55,8 @@ def theEnd(discs, moves):
             screen.blit(discs_text_record, (window_size[0] // 2 - discs_text_record.get_width() // 2, 300))
 
         if discs == 7:
-            discs_text = score_font.render(f"You make it in: {moves} moves", True, (255, 255, 255))
-            shadow_discs_text = score_font.render(f"You make it in: {moves} moves", True, (0, 0, 0))
+            discs_text = score_font.render(f"You made it in: {moves} moves", True, (255, 255, 255))
+            shadow_discs_text = score_font.render(f"You made it in: {moves} moves", True, (0, 0, 0))
             screen.blit(shadow_discs_text, (window_size[0] // 2 - discs_text.get_width() // 2 - 3, 250))
             screen.blit(discs_text, (window_size[0] // 2 - discs_text.get_width() // 2, 250))
             discs_text_record = score_font.render("Least possible moves is: 127", True, (255, 255, 255))
