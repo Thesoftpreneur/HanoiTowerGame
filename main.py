@@ -30,11 +30,12 @@ columnt_font = pygame.font.Font("Freedom-10eM.ttf", 20)
 score_font = pygame.font.Font(None, 30)
 
 
-''' 
-Funkcja, która włącza się po przeniesieniu
-wszystkich dysków na ostatnią kolumne
-'''
 def theEnd(discs, moves):
+    """
+    Funkcja, która włącza się po przeniesieniu
+    wszystkich dysków na ostatnią kolumne
+    """
+
     pygame.display.set_caption("Hanoi Tower / End")
     pygame.display.flip()
     while True:
@@ -48,9 +49,9 @@ def theEnd(discs, moves):
 
         ''' 
         Wypisanie na ekranie końcowym minimalnej ilości ruchów
-         w jakiej można ukończyć dany poziom oraz wypisanie na ekranie
-         ilości ruchów w jakiej poziom ukończył gracz
-         '''
+        w jakiej można ukończyć dany poziom oraz wypisanie na ekranie
+        ilości ruchów w jakiej poziom ukończył gracz
+        '''
         if discs == 4:
             discs_text_record = score_font.render("Least possible moves is: 15", True, (255, 255, 255))
             shadow_discs_text_record = score_font.render(f"Least possible moves is: 15", True, (0, 0, 0))
@@ -77,12 +78,13 @@ def theEnd(discs, moves):
         pygame.display.flip()
 
 
-'''
-Funkcja, która uruchamia się gdy gracz wybierze
-poziom trudności poziomu poprzez naciśnięcie przycisku
-w Menu głownym
-'''
 def game(discs, level):
+    """
+    Funkcja, która uruchamia się gdy gracz wybierze
+    poziom trudności poziomu poprzez naciśnięcie przycisku
+    w Menu głownym
+    """
+
     pygame.display.set_caption("Hanoi Tower / Game")
     pygame.display.flip()
 
@@ -93,11 +95,11 @@ def game(discs, level):
     list_of_discs = [(180, 25), (160, 25), (140, 25), (120, 25), (100, 25), (80, 25), (60, 25)]
     list_of_colors = [(255, 0, 0),  (255, 165, 0), (255, 255, 0), (0, 255, 0), (0, 0, 255), (75, 0, 130), (148, 0, 211)]
 
-    '''
-    Funkcja drawColumns rysuje nam na ekranie trzy kolumny
-    na których umieszczane będą wszystkie dyski
-    '''
     def drawColumns():
+        """
+        Funkcja drawColumns rysuje nam na ekranie trzy kolumny
+        na których umieszczane będą wszystkie dyski
+        """
         pygame.draw.rect(screen, (88, 66, 29), (100, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (350, 400, 200, 25))
         pygame.draw.rect(screen, (88, 66, 29), (600, 400, 200, 25))
@@ -262,12 +264,12 @@ def game(discs, level):
         pygame.display.flip()
 
 
-'''
-Funkcja początkowa, która włącza się przy uruchomieniu programu
-pokazuje ona Menu głowne, w którym do wyboru są
-trzy poziomy trudności: Easy, Medium, Hard
-'''
 def mainMenu():
+    """
+    Funkcja początkowa, która włącza się przy uruchomieniu programu
+    pokazuje ona Menu głowne, w którym do wyboru są
+    trzy poziomy trudności: Easy, Medium, Hard
+    """
     pygame.display.set_caption("Hanoi Tower / Menu")
     pygame.display.flip()
 
