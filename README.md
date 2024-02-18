@@ -2,6 +2,8 @@
 
 ## Opis projektu
 
+
+
 Gra w Wieże Hanoi w języku Python przy użyciu biblioteki Pygame. Zadaniem gracza jest przenieść wszystkie krążki z jednej wieży na wieże ostatnią, przy zachowaniu zasady, że mniejszy krążek nie może leżeć na większym.
 
 ## Instrukcje
