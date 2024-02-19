@@ -1,8 +1,8 @@
 import sys
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
-from button import Button
-from disc import Disc, Column
+from Hanoi.assets.classes.button import Button
+from Hanoi.assets.classes.disc import Disc, Column
 import pygame
 from pygame import mixer
 
@@ -11,7 +11,7 @@ Zainicjowanie melodii, aby była zapętlona do końca rozgrywki
 '''
 pygame.init()
 mixer.init()
-mixer.music.load("muzyka.mp3")
+mixer.music.load("assets/muzyka.mp3")
 mixer.music.play(-1)
 
 background_color = (128, 229, 175)
@@ -22,11 +22,11 @@ screen = pygame.display.set_mode(window_size)
 '''
 Wypisanie wszystkich czcionek, które będą użyte w projekcie
 '''
-game_font = pygame.font.Font("Freedom-10eM.ttf", 100)
-end_font = pygame.font.Font("Freedom-10eM.ttf", 70)
-button_font = pygame.font.Font("Freedom-10eM.ttf", 30)
-level_font = pygame.font.Font("Freedom-10eM.ttf", 50)
-columnt_font = pygame.font.Font("Freedom-10eM.ttf", 20)
+game_font = pygame.font.Font("assets/Freedom-10eM.ttf", 100)
+end_font = pygame.font.Font("assets/Freedom-10eM.ttf", 70)
+button_font = pygame.font.Font("assets/Freedom-10eM.ttf", 30)
+level_font = pygame.font.Font("assets/Freedom-10eM.ttf", 50)
+columnt_font = pygame.font.Font("assets/Freedom-10eM.ttf", 20)
 score_font = pygame.font.Font(None, 30)
 
 
@@ -39,7 +39,7 @@ def theEnd(discs, moves):
     pygame.display.set_caption("Hanoi Tower / End")
     pygame.display.flip()
     while True:
-        bg = pygame.image.load("background.png")
+        bg = pygame.image.load("assets/background.png")
         screen.blit(bg, (0, 0))
 
         menu_text = end_font.render("Congratulations", True, (255, 255, 255))
@@ -130,7 +130,7 @@ def game(discs, level):
     while True:
 
         mousepos = pygame.mouse.get_pos()
-        bg = pygame.image.load("background.png")
+        bg = pygame.image.load("assets/background.png")
         screen.blit(bg, (0, 0))
         drawColumns()
         button1.draw(screen)
@@ -275,7 +275,7 @@ def mainMenu():
 
 
     while True:
-        bg = pygame.image.load("background.png")
+        bg = pygame.image.load("assets/background.png")
         screen.blit(bg, (0, 0))
         menu_text = game_font.render("Main Menu", True, (255, 255, 255))
         shadow_menu_text = game_font.render("Main Menu", True, (0, 0, 0))
