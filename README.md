@@ -3,6 +3,7 @@
 ## Opis projektu
 
 ![](https://github.com/MarcelSeremak/HanoiTowerGame/blob/main/assets/GameGif.gif)
+gif recorded by glifcam https://gifcam.en.softonic.com/
 
 Gra w Wieże Hanoi w języku Python przy użyciu biblioteki Pygame. Zadaniem gracza jest przenieść wszystkie krążki z jednej wieży na wieże ostatnią, przy zachowaniu zasady, że mniejszy krążek nie może leżeć na większym.
 
